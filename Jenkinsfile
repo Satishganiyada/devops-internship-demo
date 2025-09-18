@@ -29,8 +29,10 @@ pipeline {
         }
         stage('upload'){
             steps{
-                withAWS(credentials: 's3', region: 'ap-south-1') {
-                    s3Upload acl: 'Private', bucket: 'myinterndemo', cacheControl: '', excludePathPattern: '', file: 'app/app.js', includePathPattern: '', metadatas: [''], path: '${BUILD_ID}', redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: ''
+                script{
+                    withAWS(credentials: 's3', region: 'ap-south-1') {
+                        s3Upload acl: 'Private', bucket: 'myinterndemo', cacheControl: '', excludePathPattern: '', file: 'app/app.js', includePathPattern: '', metadatas: [''], path: '${BUILD_ID}', redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: ''
+                    }
                 }
             }
         }
