@@ -31,7 +31,7 @@ pipeline {
             steps{
                 script{
                     withAWS(credentials: 's3', region: 'ap-south-1') {
-                        s3Upload acl: 'Private', bucket: 'myinterndemo', cacheControl: '', excludePathPattern: '', file: 'app/app.js', includePathPattern: '', metadatas: [''], path: '${BUILD_ID}', redirectLocation: '', sseAlgorithm: '', tags: '', text: '', workingDir: ''
+                        s3Upload acl: "Private", bucket: "myinterndemo", file: "app/app.js", path: "${BUILD_ID}"
                     }
                 }
             }
