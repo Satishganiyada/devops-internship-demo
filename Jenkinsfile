@@ -30,8 +30,9 @@ pipeline {
         stage('upload'){
             steps{
                 script{
+                    sh "zip -r app.zip app"
                     withAWS(credentials: 's3', region: 'ap-south-1') {
-                        s3Upload acl: "Private", bucket: "myinterndemo", file: "app/app.js", path: "${BUILD_ID}"
+                        s3Upload acl: "Private", bucket: "myinterndemo", file: "app.zip", path: "${BUILD_ID}/app.zip"
                     }
                 }
             }
