@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'cd app && npm install'
             }
         }
         stage('Deploy') {
