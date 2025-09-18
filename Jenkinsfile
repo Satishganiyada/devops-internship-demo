@@ -21,7 +21,7 @@ pipeline {
             steps{
                 sh """
                     python3 -m venv app-env
-                    source app-env/bin/activate
+                    . app-env/bin/activate
                     pip install selenium
                     python3 test.py
                 """
