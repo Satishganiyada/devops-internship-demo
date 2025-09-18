@@ -2,14 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import time
+import sys
 
-APP_URL = "http://localhost:8082"  # Replace with EC2 public IP if testing remotely
+APP_URL = "http://localhost:8082"  # Replace with EC2 public IP if remote
 
-# Use Service to point to chromedriver (if it's in current directory or PATH)
-service = Service("/usr/bin/chromedriver")   # or "./chromedriver" if local
-
+service = Service("/usr/bin/chromedriver")  # adjust path if needed
 options = webdriver.ChromeOptions()
-options.add_argument("--headless")   # Run without opening browser (useful on servers)
+options.add_argument("--headless")   # run without UI (good for servers/CI)
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
@@ -23,12 +22,17 @@ try:
     print("Page Text:", body_text)
 
     # assert "Hello from AWS DevOps Demo with Jenkins + Prometheus!" in body_text
-    assert "Azure testing" in body_text
-
+    assert "Hello from Azure" in body_text
     print("✅ Test Passed: Application response is correct.")
+    sys.exit(0)
 
 except AssertionError:
     print("❌ Test Failed: Unexpected application response.")
+    sys.exit(1)
+
+except Exception as e:
+    print(f"❌ Test Error: {e}")
+    sys.exit(1)
 
 finally:
     driver.quit()

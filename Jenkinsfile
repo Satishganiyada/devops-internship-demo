@@ -17,5 +17,15 @@ pipeline {
                 sh 'pm2 start app/app.js --name demo'
             }
         }
+        stage('Test'){
+            steps{
+                sh """
+                    python3 -m venv app-env
+                    source app-env/bin/activate
+                    pip install selenium
+                    python3 test.py
+                """
+            }
+        }
     }
 }
