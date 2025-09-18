@@ -23,7 +23,7 @@ pipeline {
                     python3 -m venv app-env
                     . app-env/bin/activate
                     pip install selenium
-                    python3 test/test.py
+                    sudo python3 test/test.py
                 """
             }
         }
