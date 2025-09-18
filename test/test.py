@@ -21,8 +21,8 @@ try:
     body_text = driver.find_element(By.TAG_NAME, "body").text
     print("Page Text:", body_text)
 
-    # assert "Hello from AWS DevOps Demo with Jenkins + Prometheus!" in body_text
-    assert "Hello from Azure" in body_text
+    assert "Hello from AWS DevOps Demo with Jenkins + Prometheus!" in body_text
+    # assert "Hello from Azure" in body_text
     print("✅ Test Passed: Application response is correct.")
     sys.exit(0)
 
