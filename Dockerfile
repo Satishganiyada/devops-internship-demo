@@ -1,3 +1,6 @@
 FROM node:latest
-COPY app/app.js /opt/app.js
-CMD ["node", "/opt/app.js"]
+WORKDIR /app
+COPY app/* .
+RUN npm install
+
+CMD ["node", "app.js"]
