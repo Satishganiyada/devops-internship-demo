@@ -42,40 +42,42 @@ pipeline {
                 }
             }
         }
-        stages{
+        stage("Deploy - QA/Prod"){
             agent {
                 label("prod-vm")
             }
-            stage("Deploy"){
-                steps{
-                    // stop running application
-                    sh 'pm2 delete demo || true'
+            stages{
+                stage("Deploy"){
+                    steps{
+                        // stop running application
+                        sh 'pm2 delete demo || true'
 
-                    // take backup of old files
-                    sh "rm -rf old_code_app || true"
-                    sh "mv app old_code_app"
+                        // take backup of old files
+                        sh "rm -rf old_code_app || true"
+                        sh "mv app old_code_app"
 
-                    // get new code from stash
-                    unstash 'app.zip'
-                    sh "unzip app.zip"
-                    sh 'pm2 start app/app.js --name demo'
+                        // get new code from stash
+                        unstash 'app.zip'
+                        sh "unzip app.zip"
+                        sh 'pm2 start app/app.js --name demo'
+                    }
                 }
-            }
-            stage("Check status & Rollback"){
-                steps{
-                    sh """
-                        curl localhost:8082
-                        if [[ \$? -ne 0 ]];
-                        then
-                            ## roll back
-                            
-                            ## delete new code
-                            rm -rf app
-                            cp old_code_app app 
-                        else
-                            echo Application is running successfully...
-                        fi
-                    """
+                stage("Check status & Rollback"){
+                    steps{
+                        sh """
+                            curl localhost:8082
+                            if [[ \$? -ne 0 ]];
+                            then
+                                ## roll back
+                                
+                                ## delete new code
+                                rm -rf app
+                                cp old_code_app app 
+                            else
+                                echo Application is running successfully...
+                            fi
+                        """
+                    }
                 }
             }
         }
