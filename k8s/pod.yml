@@ -8,3 +8,5 @@ spec:
       image: satish2323/demo-project:v2
       ports:
         - containerPort: 8082
+      labels:
+        app: demo
