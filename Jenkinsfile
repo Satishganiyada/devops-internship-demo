@@ -59,7 +59,8 @@ pipeline {
                         // get new code from stash
                         unstash 'app.zip'
                         sh "unzip app.zip"
-                        sh 'pm2 start app/app.js --name demo'
+                        sh 'pm2 start app/app.js --name demo '
+                        sh 'sleep 5'
                     }
                 }
                 stage("Check status & Rollback"){
