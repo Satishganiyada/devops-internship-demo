@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: demo
+  labels:
+    app: demo
 spec:
   containers:
-    - name: demo
-      image: satish2323/demo-project:v2
-      ports:
-        - containerPort: 8082
-      labels:
-        app: demo
+  - name: demo-container
+    image: satish2323/demo-project:v2
+    ports:
+      - containerPort: 8082
