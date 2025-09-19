@@ -65,7 +65,7 @@ pipeline {
                 steps{
                     sh """
                         curl localhost:8082
-                        if [[ $? -ne 0 ]];
+                        if [[ \$? -ne 0 ]];
                         then
                             ## roll back
                             
@@ -73,7 +73,7 @@ pipeline {
                             rm -rf app
                             cp old_code_app app 
                         else
-                            echo "Application is running successfully..."
+                            echo Application is running successfully...
                         fi
                     """
                 }
