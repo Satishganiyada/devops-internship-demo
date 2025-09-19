@@ -42,7 +42,7 @@ pipeline {
                 }
             }
         }
-        stages("Deploy to QA/Prod"){
+        stages{
             agent {
                 label("prod-vm")
             }
