@@ -6,8 +6,7 @@
 - **PM2** → Process manager for Node.js, ensures the app runs continuously with monitoring and restart features.  
 - **Jenkins** → CI/CD automation tool, managing build, test, and deploy stages.  
 - **Selenium (Python)** → Used for automated UI testing to validate app functionality.  
-- **AWS S3** → Stores build artifacts for consistent deployments across environments.  
-- **Terraform (IaC)** → (From `iac/`) for provisioning and managing cloud infrastructure.  
+- **AWS S3** → Stores build artifacts for consistent deployments across environments.    
 - **Rollback Strategy** → Ensures safe deployments with the ability to recover from failures.  
 
 ---
@@ -25,8 +24,7 @@ Before running the application and pipeline, ensure the following are installed:
 - **Tools**  
   - [Jenkins](https://www.jenkins.io/) installed and running  
   - PM2 (`npm install -g pm2`)  
-  - AWS CLI configured with S3 access  
-  - Terraform (for IaC from `iac/`)  
+  - AWS CLI configured with S3 access   
 
 - **Jenkins Plugins**  
   - Pipeline  
